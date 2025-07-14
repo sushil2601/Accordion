@@ -8,13 +8,19 @@ const Accordion = ({ items }) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  return (
+  return !items || items.length === 0 ? (
+    <h1>No Item Available</h1>
+  ) : (
     <div>
       {items.map((item, index) => (
         <div>
           <button key={index} onClick={() => handleToggle(index)}>
             {item.titles}
-            {openIndex === index ? <FaChevronDown /> : <FaChevronUp />}
+            {openIndex === index ? (
+              <FaChevronDown className="right" />
+            ) : (
+              <FaChevronUp className="right" />
+            )}
           </button>
           {openIndex === index && <div>{item.content}</div>}
         </div>
